@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+<head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>PESUTUPA UG</title>
@@ -9,51 +9,268 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
     <style>
-      :root {
-        scroll-behavior: smooth;
-      }
-      body {
-        background-color: #0F0F0F;
-        color: #EDEDED;
-        font-family: 'Outfit', sans-serif;
-        margin: 0;
-        padding: 0;
-      }
-      /* Custom utility for the specific narrow layout */
-      .narrow-container {
-        max-width: 900px;
-        margin-left: auto;
-        margin-right: auto;
-        padding-left: 1.5rem;
-        padding-right: 1.5rem;
-      }
-      /* Custom font size classes as per specification */
-      .text-logo { font-size: 50px; line-height: 1; }
-      .text-nav { font-size: 20px; font-weight: 700; }
-      .text-header { font-size: 35px; }
-      .text-body { font-size: 24px; line-height: 1.6; }
-      
-      @media (max-width: 768px) {
-        .text-logo { font-size: 28px; }
-        .text-nav { font-size: 14px; }
-        .text-header { font-size: 28px; }
-        .text-body { font-size: 18px; }
-      }
+        :root {
+            scroll-behavior: smooth;
+        }
+        body {
+            background-color: #0F0F0F;
+            color: #EDEDED;
+            font-family: 'Outfit', sans-serif;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+        }
+        /* Layout Utilities */
+        .narrow-container {
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+            padding-left: 1.5rem;
+            padding-right: 1.5rem;
+        }
+        /* Typography Scale */
+        .text-logo { font-size: 50px; line-height: 1; font-weight: 700; }
+        .text-nav { font-size: 20px; font-weight: 700; }
+        .text-header { font-size: 35px; font-weight: 700; }
+        .text-body { font-size: 24px; line-height: 1.6; }
+        
+        @media (max-width: 768px) {
+            .text-logo { font-size: 28px; }
+            .text-nav { font-size: 14px; }
+            .text-header { font-size: 28px; }
+            .text-body { font-size: 18px; }
+        }
+
+        /* Section Landing Offsets */
+        section {
+            scroll-margin-top: 130px;
+            margin-bottom: 8rem;
+        }
+        @media (min-width: 768px) {
+            section {
+                scroll-margin-top: 110px;
+            }
+        }
+
+        /* Animation States */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease-out;
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Progress Bar */
+        #progress-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 4px;
+            background: #EDEDED;
+            width: 0%;
+            z-index: 100;
+        }
+
+        /* Custom Grayscale Transitions */
+        .img-container img {
+            transition: filter 0.7s ease;
+        }
+        .grayscale-past {
+            filter: grayscale(100%);
+        }
+        .grayscale-past:hover {
+            filter: grayscale(0%);
+        }
     </style>
-  <script type="importmap">
+<script type="importmap">
 {
   "imports": {
-    "framer-motion": "https://esm.sh/framer-motion@^12.30.1",
-    "react-dom/": "https://esm.sh/react-dom@^19.2.4/",
     "react/": "https://esm.sh/react@^19.2.4/",
-    "react": "https://esm.sh/react@^19.2.4"
+    "react": "https://esm.sh/react@^19.2.4",
+    "framer-motion": "https://esm.sh/framer-motion@^12.33.0"
   }
 }
 </script>
-<link rel="stylesheet" href="/index.css">
 </head>
-  <body>
-    <div id="root"></div>
-  <script type="module" src="/index.tsx"></script>
+<body>
+    <div id="progress-bar"></div>
+
+    <!-- Header -->
+    <header class="fixed top-0 left-0 right-0 z-40 bg-[#0F0F0F] border-b border-[#EDEDED]/5">
+        <div class="narrow-container py-4 md:py-6 flex flex-col md:flex-row justify-between items-center gap-4">
+            <div class="flex items-center gap-3 group cursor-pointer" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
+                <img src="https://i.ibb.co/bRDK2LSP/IMG-3261-2.jpg" alt="PESUTUPA UG" class="w-[35px] h-[35px] md:w-[50px] md:h-[50px] object-cover transition-transform group-hover:rotate-12">
+                <h1 class="text-logo tracking-[0.1em] whitespace-nowrap uppercase">PESUTUPA UG</h1>
+            </div>
+            <nav class="flex items-center gap-6 md:gap-8 pb-2 md:pb-0">
+                <a href="#events" onclick="scrollToSection(event, '#events')" class="text-nav uppercase tracking-wider hover:text-white transition-colors relative group">
+                    Events
+                    <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-[#EDEDED] transition-all group-hover:w-full"></span>
+                </a>
+                <a href="#artists" onclick="scrollToSection(event, '#artists')" class="text-nav uppercase tracking-wider hover:text-white transition-colors relative group">
+                    Artists
+                    <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-[#EDEDED] transition-all group-hover:w-full"></span>
+                </a>
+                <a href="#contact" onclick="scrollToSection(event, '#contact')" class="text-nav uppercase tracking-wider hover:text-white transition-colors relative group">
+                    Contact
+                    <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-[#EDEDED] transition-all group-hover:w-full"></span>
+                </a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="narrow-container pt-[160px]">
+        <!-- Events Section -->
+        <section id="events" class="reveal">
+            <div class="space-y-24">
+                <div class="space-y-12">
+                    <h2 class="text-header uppercase tracking-widest border-b border-[#EDEDED]/20 pb-4">Upcoming Events</h2>
+                    <div class="grid grid-cols-1 gap-12">
+                        <div class="max-w-md mx-auto w-full group overflow-hidden">
+                            <div class="aspect-[4/5] bg-[#333] overflow-hidden">
+                                <img src="https://i.ibb.co/hxL2KB8Y/IMG-3266.jpg" alt="Upcoming Event" class="w-full h-full object-cover">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="space-y-12">
+                    <h2 class="text-header uppercase tracking-widest border-b border-[#EDEDED]/20 pb-4">Past Events</h2>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                        <div class="group overflow-hidden">
+                            <div class="aspect-[4/5] bg-[#333] overflow-hidden img-container">
+                                <img src="https://i.ibb.co/J8qQd7R/IMG-3258.jpg" alt="Past Event" class="w-full h-full object-cover grayscale-past">
+                            </div>
+                        </div>
+                        <div class="group overflow-hidden">
+                            <div class="aspect-[4/5] bg-[#333] overflow-hidden img-container">
+                                <img src="https://i.ibb.co/N6R602N5/IMG-3257.jpg" alt="Past Event" class="w-full h-full object-cover grayscale-past">
+                            </div>
+                        </div>
+                        <div class="group overflow-hidden">
+                            <div class="aspect-[4/5] bg-[#333] overflow-hidden img-container">
+                                <img src="https://i.ibb.co/VYM3JJ6F/IMG-3256.jpg" alt="Past Event" class="w-full h-full object-cover grayscale-past">
+                            </div>
+                        </div>
+                        <div class="group overflow-hidden">
+                            <div class="aspect-[4/5] bg-[#333] overflow-hidden img-container">
+                                <img src="https://i.ibb.co/5WNsCdR2/IMG-3255.jpg" alt="Past Event" class="w-full h-full object-cover grayscale-past">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Artists Section -->
+        <section id="artists" class="reveal">
+            <div class="space-y-16">
+                <h2 class="text-header uppercase tracking-widest border-b border-[#EDEDED]/20 pb-4">Artists</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-16">
+                    <div class="group">
+                        <div class="aspect-square bg-[#333] mb-6 overflow-hidden img-container">
+                            <img src="https://i.ibb.co/pvD3Pf2q/IMG-3263.jpg" alt="runeberghain" class="w-full h-full object-cover grayscale-past">
+                        </div>
+                        <h3 class="text-header mb-1 uppercase tracking-tighter">runeberghain</h3>
+                        <a href="https://soundcloud.com/runeberghain" target="_blank" class="text-nav text-[#EDEDED]/60 hover:text-white transition-colors">SOUNDCLOUD</a>
+                    </div>
+                    <div class="group">
+                        <div class="aspect-square bg-[#333] mb-6 overflow-hidden img-container">
+                            <img src="https://i.ibb.co/s92mfQSY/IMG-3262.jpg" alt="Abjekti" class="w-full h-full object-cover grayscale-past">
+                        </div>
+                        <h3 class="text-header mb-1 uppercase tracking-tighter">Abjekti</h3>
+                        <a href="https://soundcloud.com/abjekti" target="_blank" class="text-nav text-[#EDEDED]/60 hover:text-white transition-colors">SOUNDCLOUD</a>
+                    </div>
+                    <div class="group">
+                        <div class="aspect-square bg-[#333] mb-6 overflow-hidden img-container">
+                            <img src="https://i.ibb.co/RGc0xyNn/IMG-3264.jpg" alt="Heizgerat" class="w-full h-full object-cover grayscale-past">
+                        </div>
+                        <h3 class="text-header mb-1 uppercase tracking-tighter">Heizgerat</h3>
+                        <a href="https://soundcloud.com/heizgerat" target="_blank" class="text-nav text-[#EDEDED]/60 hover:text-white transition-colors">SOUNDCLOUD</a>
+                    </div>
+                    <div class="group">
+                        <div class="aspect-square bg-[#333] mb-6 overflow-hidden img-container">
+                            <img src="https://picsum.photos/seed/artist4/600/600" alt="Rasmus" class="w-full h-full object-cover grayscale-past">
+                        </div>
+                        <h3 class="text-header mb-1 uppercase tracking-tighter">Rasmus</h3>
+                        <a href="https://soundcloud.com" target="_blank" class="text-nav text-[#EDEDED]/60 hover:text-white transition-colors">SOUNDCLOUD</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="reveal mb-12">
+            <div class="space-y-16">
+                <h2 class="text-header uppercase tracking-widest border-b border-[#EDEDED]/20 pb-4">Contact</h2>
+                <div class="flex flex-col gap-12">
+                    <div class="max-w-xl">
+                        <p class="text-body mb-8">Pesutupa ry</p>
+                        <a href="mailto:pesukone.pesutupa@gmail.com" class="text-body font-bold underline decoration-1 underline-offset-4 hover:text-white transition-colors">pesukone.pesutupa@gmail.com</a>
+                    </div>
+                    <div class="flex flex-wrap gap-12 mt-8">
+                        <a href="https://instagram.com/pesutupa.ug" target="_blank" class="flex items-center gap-4 group transition-transform hover:scale-105">
+                            <div class="w-12 h-12 bg-[#EDEDED] flex items-center justify-center text-[#0F0F0F]">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>
+                            </div>
+                            <span class="text-nav uppercase tracking-widest group-hover:underline">Instagram</span>
+                        </a>
+                        <a href="https://t.me/+9Ag3jURKuUZjZjFk" target="_blank" class="flex items-center gap-4 group transition-transform hover:scale-105">
+                            <div class="w-12 h-12 bg-[#EDEDED] flex items-center justify-center text-[#0F0F0F]">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" x2="11" y1="2" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+                            </div>
+                            <span class="text-nav uppercase tracking-widest group-hover:underline">Telegram</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="narrow-container py-12 border-t border-[#EDEDED]/10 text-center opacity-50 text-body">
+        <p>&copy; <span id="year"></span> Pesutupa ry </p>
+    </footer>
+
+    <script>
+        // Set Year
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        // Scroll Logic to prevent "Refuse to Connect"
+        function scrollToSection(event, href) {
+            event.preventDefault();
+            const target = document.querySelector(href);
+            if (target) {
+                target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        }
+
+        // Progress Bar Logic
+        window.addEventListener('scroll', () => {
+            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (winScroll / height) * 100;
+            document.getElementById('progress-bar').style.width = scrolled + '%';
+        });
+
+        // Reveal Animations using Intersection Observer
+        const observerOptions = {
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.reveal').forEach(section => {
+            observer.observe(section);
+        });
+    </script>
 </body>
 </html>

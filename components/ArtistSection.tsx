@@ -47,7 +47,7 @@ const ArtistSection: React.FC = () => {
       link: "soundcloud.com/heizgerat" 
     },
     { 
-      name: "Rasmus", 
+      name: "Musras", 
       image: "https://picsum.photos/seed/artist4/600/600",
       link: "soundcloud.com/" 
     },
@@ -55,7 +55,7 @@ const ArtistSection: React.FC = () => {
       name: "Malakias", 
       image: "https://picsum.photos/seed/artist4/600/600",
       link: "soundcloud.com/" 
-    },
+    }
   ];
 
   return (

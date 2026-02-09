@@ -31,30 +31,30 @@ const ArtistCard: React.FC<{ name: string; image: string; link: string }> = ({ n
 
 const ArtistSection: React.FC = () => {
   const artists = [
-    { 
-      name: "runeberghain", 
-      image: "https://i.ibb.co/pvD3Pf2q/IMG-3263.jpg", 
-      link: "soundcloud.com/runeberghain" 
-    }, 
-    { 
+     { 
       name: "Abjekti", 
       image: "https://i.ibb.co/s92mfQSY/IMG-3262.jpg", 
       link: "soundcloud.com/abjekti" 
     },
-    { 
+     { 
       name: "Heizgerat", 
       image: "https://i.ibb.co/RGc0xyNn/IMG-3264.jpg", 
       link: "soundcloud.com/heizgerat" 
     },
-    { 
+      { 
       name: "Musras", 
       image: "https://picsum.photos/seed/artist4/600/600",
       link: "soundcloud.com/" 
     },
-     { 
-      name: "Malakias", 
-      image: "https://picsum.photos/seed/artist4/600/600",
-      link: "soundcloud.com/" 
+      { 
+      name: "Reonoj", 
+      image: "https://i.ibb.co/01gQ1Q6/IMG-3485.jpg",
+      link: "https://reonoj.bandcamp.com//" 
+    },
+    { 
+      name: "runeberghain", 
+      image: "https://i.ibb.co/pvD3Pf2q/IMG-3263.jpg", 
+      link: "soundcloud.com/runeberghain" 
     }
   ];
 
